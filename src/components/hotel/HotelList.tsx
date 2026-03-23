@@ -89,7 +89,7 @@ const HotelList = () => {
         observer.unobserve(current);
       }
     };
-  }, [hasMore, loading]);
+  }, [hasMore]);
 
   return (
     <div style={{display:'flex',flexWrap:'wrap', justifyContent:'center', gap:'16px', padding:'16px'}}>
