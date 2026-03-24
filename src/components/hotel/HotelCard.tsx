@@ -15,6 +15,7 @@ type Hotel = {
   thumbnails: string[];
   amenities: string[];
   rooms: Room[];
+   total_price: number;
 };
 const styles = {
   card: {
@@ -27,7 +28,6 @@ const styles = {
   },
   image: {
     width: "200px",
-    height: "150px",
 
   },
   content: {
@@ -58,7 +58,7 @@ const HotelCard = ({ hotel }: { hotel: Hotel }) => {
     <div style={styles.card}>
       
       <img
-        src={hotel.thumbnails?.[0]}
+        src={'/5img.jpg'}
         alt={hotel.hotel_name}
         style={styles.image}
         loading="lazy"
@@ -86,7 +86,7 @@ const HotelCard = ({ hotel }: { hotel: Hotel }) => {
             <p>{firstRoom.RoomBasis}</p>
 
             <p style={styles.price}>
-              {firstRoom.Currency} {firstRoom.TotalPrice}
+              {firstRoom.Currency} {hotel.total_price}
             </p>
           </>
         )}

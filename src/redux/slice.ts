@@ -12,7 +12,7 @@ export interface UserForm {
   pincode: string;
   skills1: string[];
   skills2: string[];
-  skills3: string[];
+  skills3: string;
   gender: string;
   receiveNotifications: boolean;
   agree: boolean;

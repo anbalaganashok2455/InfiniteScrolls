@@ -15,7 +15,7 @@ type Props = {
   ) => void;
 };
 
-export default function MultiSelect({
+export default function MultiSelectSearch({
   options,
   value,
   onBlur,
@@ -63,7 +63,7 @@ export default function MultiSelect({
         .container {  position: relative; font-family: Arial; }
         .input-box { border: 1px solid #ccc; padding: 8px; cursor: pointer; min-height: 40px; border-radius: .3rem; }
         .tags { display: flex; flex-wrap: wrap; gap: 4px;padding: 1px 10px; }
-        .tag { background:  #4f46e5; color: #dddd; padding: 6px 10px; font-size: 12px; display: flex; gap: 4px; border-radius: 10rem; }
+        .tag { background:  #f3f3f8; color: #0a0a0add; padding: 6px 10px; font-size: 12px; display: flex; gap: 4px; border-radius: 10rem; }
         .remove { cursor: pointer; }
         .dropdown {
           position: absolute;

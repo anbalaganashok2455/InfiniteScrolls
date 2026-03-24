@@ -1,1 +1,14 @@
-{}
+{
+  "components\\hotel\\HotelList.tsx -> ../ui/MultiSelect": {
+    "id": "components\\hotel\\HotelList.tsx -> ../ui/MultiSelect",
+    "files": [
+      "static/chunks/_app-pages-browser_src_components_ui_MultiSelect_tsx.js"
+    ]
+  },
+  "components\\hotel\\HotelList.tsx -> ../ui/Select": {
+    "id": "components\\hotel\\HotelList.tsx -> ../ui/Select",
+    "files": [
+      "static/chunks/_app-pages-browser_src_components_ui_Select_tsx.js"
+    ]
+  }
+}

@@ -34,7 +34,7 @@ const initialEmpty: FormValues = {
   pincode: "",
   skills1: [],
   skills2: [],
-  skills3: [],
+  skills3: '',
   gender: "female",
   receiveNotifications: false,
   agree: false,
@@ -242,7 +242,7 @@ const handleMultiChange = async (name: string, value: string[]) => {
             <Select
               options={["React", "Node", "Angular", "Vue"]}
               value={values.skills3}
-              onChange={(val) => setValues((prev) => ({ ...prev, skills3: val }))}
+              onChange={(val:any) => setValues((prev) => ({ ...prev, skills3: val }))}
               placeholder="Select skills Select"
             />
           </FormField>

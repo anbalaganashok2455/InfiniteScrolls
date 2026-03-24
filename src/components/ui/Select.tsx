@@ -3,54 +3,43 @@ import { useState, useRef, useEffect } from "react";
 
 type Props = {
   options: string[];
-  value: string[];
-  onChange: (val: string[]) => void;
+  value: string;
+  onChange: (val: string) => void;
   placeholder?: string;
 };
 
-export default function MultiSelect({
+export default function Select({
   options,
   value,
   onChange,
   placeholder = "Select...",
 }: Props) {
   const [open, setOpen] = useState(false);
-
   const ref = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
   useEffect(() => {
     const handleClick = (e: any) => {
-      if (!ref.current?.contains(e.target)) {
-        setOpen(false);
-      }
+      if (!ref.current?.contains(e.target)) setOpen(false);
     };
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
   const toggleSelect = (item: string) => {
-    if (value.includes(item)) {
-      onChange(value.filter((i) => i !== item));
-    } else {
-      onChange([item]);
-    }
+    onChange(value === item ? "" : item);
   };
 
-  const removeTag = (item: string) => {
-    onChange(value.filter((i) => i !== item));
+  const removeTag = () => {
+    onChange("");
   };
-
-
-
 
   return (
     <>
       <style>{`
         .container {  position: relative; font-family: Arial; }
-        .input-box { border: 1px solid #ccc; padding: 8px; cursor: pointer; min-height: 40px; border-radius: .3rem; }
+        .input-box { border: 1px solid #ccc; padding: 8px; cursor: pointer; min-height: 40px; border-radius: .3rem; min-width: 200px; }
         .tags { display: flex; flex-wrap: wrap; gap: 4px;padding: 1px 10px; }
-        .tag { background:  #4f46e5; color: #dddd; padding: 6px 10px; font-size: 12px; display: flex; gap: 4px; border-radius: 10rem; }
+        .tag { background:  #f7f6fc; color: #0e0c0cdd; padding: 6px 10px; font-size: 12px; display: flex; gap: 4px; border-radius: 10rem; }
         .remove { cursor: pointer; }
         .dropdown {
           position: absolute;
@@ -75,47 +64,29 @@ export default function MultiSelect({
       `}</style>
 
       <div className="container" ref={ref}>
-        
-        {/* Input */}
         <div className="input-box" onClick={() => setOpen(!open)}>
           <div className="tags">
-            {value.length === 0
-              ? placeholder
-              : value.map((item) => (
-                  <span key={item} className="tag">
-                    {item}
-                    <span
-                      className="remove"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        removeTag(item);
-                      }}
-                    >
-                      X
-                    </span>
-                  </span>
-                ))}
+            {value === "" ? (
+              placeholder
+            ) : (
+              <span className="tag">
+                {value}
+                <span className="remove" onClick={(e) => { e.stopPropagation(); removeTag(); }}>X</span>
+              </span>
+            )}
           </div>
         </div>
 
-        {/* Dropdown */}
         <div className={`dropdown ${open ? "open" : ""}`}>
-          {open && (
-            <>
-              {options.map((item) => (
-                <div
-                  key={item}
-                  className={`item 
-                    ${value.includes(item) ? "selected" : ""}
-
-                  `}
-                  onClick={() => toggleSelect(item)}
-                >
-                  {item}
-                </div>
-              ))}
-            </>
-          )}
+          {open && options.map((item) => (
+            <div
+              key={item}
+              className={`item ${value === item ? "selected" : ""}`}
+              onClick={() => toggleSelect(item)}
+            >
+              {item}
+            </div>
+          ))}
         </div>
       </div>
     </>
