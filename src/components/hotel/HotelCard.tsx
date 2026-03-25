@@ -52,6 +52,7 @@ const styles = {
   }
 };
 const HotelCard = ({ hotel }: { hotel: Hotel }) => {
+  console.log(hotel);
   const firstRoom = hotel.rooms?.[0];
 
   return (
